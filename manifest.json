@@ -1,0 +1,7 @@
+{
+  "name": "Motherships Mesh Animation Template",
+  "descriptions": ["Mesh animation template for the motherships"],
+  "information": "https://github.com/WinterNox/Mothership-Mesh-Animation-Template",
+  "entry_point": "level.lua",
+  "has_score_leaderboard": false
+}
