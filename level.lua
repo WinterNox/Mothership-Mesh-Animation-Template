@@ -5,7 +5,6 @@ local sides = 3  -- Remember to change this variable everytime you change the co
 local total_frames = 20 * (sides + 1)  
 -- The number of frames is directly proportional to the sides of the mothership.
 -- Hence, the more sides, the more time it takes for the mothership to rotate.
--- This fact is verified by a core developer as of 2025-02-25 10:00 UTC.
 
 local frame = 0
 
