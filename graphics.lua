@@ -14,8 +14,8 @@ local total_frames = 20 * (sides + 1)
 for frame = 0, total_frames - 1 do
   local c_vertexes, c_colors, c_segments = {}, {}, {}
 
-  table.insert(c_vertexes, {0, 0, -radius / 8})  -- The vertex from which the central lines originate
-  table.insert(c_colors, 0)
+  table.insert(c_vertexes, {0, 0})  -- The vertex from which the central lines originate
+  table.insert(c_colors, 0xffffff00)  -- This vertex itself will be transparent (white)
 
   local vertex_index = 1
 
@@ -32,7 +32,7 @@ for frame = 0, total_frames - 1 do
   local inner_segment_opacity = (255 * (1 - t) ^ 2) // 1
   local inner_segment_color = make_color(255, 255, 255, inner_segment_opacity)
 
-  local central_lines_opacity = (255 * t ^ 2) // 1
+  local central_lines_opacity = (32 + 96 * t ^ 2) // 1
   local central_lines_color = make_color(255, 255, 255, central_lines_opacity)
 
   for i = 0, sides - 1 do
@@ -40,7 +40,7 @@ for frame = 0, total_frames - 1 do
 
     -- Inner segment
     local y1, x1 = math.sincos(inner_segment_angle + angle_offset)
-    table.insert(c_vertexes, {x1 * radius / 2, y1 * radius / 2, radius * 2/3})
+    table.insert(c_vertexes, {x1 * radius / 2, y1 * radius / 2, radius * 5/6})
 
     table.insert(inner_segment, vertex_index)
 
@@ -59,7 +59,7 @@ for frame = 0, total_frames - 1 do
 
     -- Central lines
     local y3, x3 = math.sincos(outer_segment_angle * 2 + angle_offset)
-    table.insert(c_vertexes, {x3 * radius / 6, y3 * radius / 6})
+    table.insert(c_vertexes, {x3 * radius * 2/9, y3 * radius * 2/9, radius * 5/12})
 
     table.insert(c_segments, {0, vertex_index + 2})
 
