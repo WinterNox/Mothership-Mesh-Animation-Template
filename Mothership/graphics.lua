@@ -1,11 +1,6 @@
-meshes = {}
+local color_helpers = require("/dynamic/color_helpers.lua")
 
-local function make_color(r, g, b, a)
-  local color = r * 256 + g
-  color = color * 256 + b
-  color = color * 256 + a
-  return color
-end
+meshes = {}
 
 local radius = 48
 local sides = 3
@@ -30,10 +25,10 @@ for frame = 0, total_frames - 1 do
   local t = difference_in_angles / math.pi
 
   local inner_segment_opacity = (255 * (1 - t) ^ 2) // 1
-  local inner_segment_color = make_color(255, 255, 255, inner_segment_opacity)
+  local inner_segment_color = color_helpers.make_color(255, 255, 255, inner_segment_opacity)
 
   local central_lines_opacity = (32 + 96 * t ^ 2) // 1
-  local central_lines_color = make_color(255, 255, 255, central_lines_opacity)
+  local central_lines_color = color_helpers.make_color(255, 255, 255, central_lines_opacity)
 
   for i = 0, sides - 1 do
     local angle_offset = math.tau * (i / sides)
@@ -68,7 +63,7 @@ for frame = 0, total_frames - 1 do
     vertex_index = vertex_index + 3
   end
 
-  -- Add the starting vertexes of the segments to complete the polygon
+  -- Add the starting vertexes of the segments to complete the polygons
   table.insert(inner_segment, 1)
   table.insert(outer_segment, 2)
 
